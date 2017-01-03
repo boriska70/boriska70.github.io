@@ -14,12 +14,11 @@
     console.log(ga.getAll());
   });
   ga(function (tracker) {
-    console.log('Traker ' + tracker.get('name') + ' for trackingId' + tracker.get('trackingId'))
+    console.log('Traker ' + tracker.get('name') + ' for trackingId' + tracker.get('trackingId') + ' event type ' + tracker.get('eventAction') + ' screenResolution ' + tracker.get('screenResolution'))
   })
   ga('send', 'pageview', {
   'hitCallback': function() {
-    console.log('hit sent:');
-    console.log('Screen Resolution is '+ screenResolution);
+    console.log('hit sent');
   }
 });
 
