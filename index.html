@@ -17,8 +17,8 @@
     console.log('Traker ' + tracker.get('name') + ' for trackingId' + tracker.get('trackingId'))
   })
   ga('send', 'pageview', {
-  'hitCallback': function(tracker) {
-    console.log('hit sent: ' + tracker.get('hitType') + ' event type ' + tracker.get('eventAction'));
+  'hitCallback': function() {
+    console.log('hit sent:');
     console.log('Screen Resolution is '+ screenResolution);
   }
 });
