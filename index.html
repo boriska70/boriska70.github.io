@@ -7,10 +7,21 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-89745902-1', 'auto');
+  //see replacement below
+  // ga('send', 'pageview');
+
   ga(function(){
     console.log(ga.getAll());
   });
-  ga('send', 'pageview');
+  ga(function (tracker) {
+    console.log('Traker ' + tracker.get('name') + ' for trackingId' + tracker.get('trackingId'))
+  })
+  ga('send', 'pageview', {
+  'hitCallback': function(tracker) {
+    console.log('hit sent: ' + tracker.get('hitType') + ' event type ' + tracker.get('eventAction'));
+    console.log('Screen Resolution is '+ screenResolution);
+  }
+});
 
 </script>
 </head>
