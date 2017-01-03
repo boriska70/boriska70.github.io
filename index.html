@@ -17,7 +17,7 @@
 function goUniverse(universe){
   alert('Going to ' + universe)
 }
-function sumbitEnabler(ind) {
+function submitEnabler(ind) {
   if(ind > 0){
     document.getElementById("submit").disabled=false
   }
@@ -31,14 +31,14 @@ function sumbitEnabler(ind) {
   <div>
     How would you like to search?
     <form action="#">
-      <select name="engines" id="engines" onchange="sumbitEnabler(this.selectedIndex)">
-        <option value="">Select: </option>
+      <select name="engines" id="engines" onchange="submitEnabler(this.selectedIndex)">
+        <option value="" selected="true">Select: </option>
         <option value="http://google.com">Google</option>
         <option value="http://yahoo.com">Yahoo</option>
         <option value="http://ya.ru">Yandex</option>
       </select>
       <p>
-      <input type="button" id="submit" value="Go there" onclick="goUniverse(this.form.engines[this.form.engines.selectedIndex].value)" disabled="true"/>
+      <input type="button" id="submit" value="Go there" onclick="goUniverse(this.form.engines[this.form.engines.selectedIndex].value)" disabled="submitEnabler(this.form.engines.selectedIndex)"/>
       </p>
     </form>
   </div>
