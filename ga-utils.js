@@ -1,3 +1,4 @@
+//LocalHitPrinter Plugin START
 function providePlugin(pluginName, pluginConstructor) {
     var ga = window[window['GoogleAnalyticsObject'] || 'ga'];
     if (typeof ga == 'function') {
@@ -5,18 +6,24 @@ function providePlugin(pluginName, pluginConstructor) {
     }
 }
 
-function LocalHitSender(tracker, config) {
-    this.tracker = tracker
-    this.path = config.path;
+function LocalHitPrinter(tracker, config) {
+    this.tracker = tracker;
+    this.required = config.now;
     this.debug = config.debug;
     if (this.debug) {
-        console.log('localHitSender enabled for path: ' + this.path);
-        console.log('on tracker: ' + tracker.get('name'));
+        console.log('LocalHitPrinter required at ' + this.required + ' on tracker: ' + this.tracker.get('name'));
     }
 }
 
-LocalHitSender.prototype.message = function(message) {
-    if (console) console.log('LocalHitSender got a message ' + message);
+LocalHitPrinter.prototype.message = function(message) {
+    if (console) console.log('LocalHitPrinter got a message ' + message);
 };
 
-providePlugin('localHitSender', LocalHitSender);
+providePlugin('localHitPrinter', LocalHitPrinter);
+//LocalHitPrinter Plugin END
+
+//Just a function that using ga
+function onLoadEventHandler(pageName) {
+    ga('send','event','PageLoading',pageName + ' loaded');
+    ga('localHitPrinter:message', pageName + ' loaded');
+}

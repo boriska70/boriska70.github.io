@@ -12,3 +12,7 @@ ga('send', 'pageview');
 </script>
 <!--Note: plugin scripts must be included after the tracking snippet. -->
 <script async src="/path/to/link-tracker-plugin.js"></script>
+
+
+See index.html script section for more details
+See page2.html script section for pure code

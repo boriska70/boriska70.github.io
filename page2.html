@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page 2 - even better than index!</title>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-89745902-1', 'auto');
+
+        ga(function(tracker) {
+            var originalSendHitTask = tracker.get('sendHitTask');
+            tracker.set('sendHitTask', function(model) {
+                originalSendHitTask(model);
+                var url = '/foo/server.html';
+                var data = model.get('hitPayload');
+                console.log('Sending data to server on ' + url + ': ' + model.get('hitPayload'));
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url + '?' + data, true);
+                xhr.onreadystatechange = function () {
+                    console.log('Data sent to ' + url );
+                };
+                xhr.send(null);
+            });
+        });
+        ga('send', 'pageview');
+    </script>
+    <!-- GA plugin -->
+    <script async src="ga-utils.js"></script>
+
+</head>
+<body onload="onLoadEventHandler('Page 2')">
+
+<a href="index.html">OK, let's now go back to index.html</a>
+
+</body>
+</html>

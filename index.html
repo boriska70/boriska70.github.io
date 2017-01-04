@@ -21,7 +21,7 @@
   }
 
   //load my plugin
-  ga('require', 'localHitSender', {path: '/log', debug: true})
+  ga('require', 'localHitPrinter', {now: new Date(), debug: true});
   
   ga(function(){
     console.log(ga.getAll());
@@ -39,8 +39,8 @@
       // sending the normal request to www.google-analytics.com/collect.
       tracker.set('sendHitTask', function(model) {
           originalSendHitTask(model);
-          console.log('Sending data: ' + model.get('hitPayload'));
-/*          var xhr = new XMLHttpRequest();
+          console.log('Sending data to DSO: ' + model.get('hitPayload'));
+/*        var xhr = new XMLHttpRequest();
           xhr.open('POST', '/localhits', true);
           xhr.send(model.get('hitPayload'));*/
       });
@@ -58,13 +58,13 @@
 <script async src="ga-utils.js"></script>
 
 </head>
-<body>
+<body onload="onLoadEventHandler('index.html')">
 
 <script>
 function goUniverse(universe){
 //  alert('Going to ' + universe);
   ga('send', 'event', 'GoingToSearch', 'Searching on ' + universe, 'LeavingForSearch');
-  ga('localHitSender:message', 'Hello, world!');
+  ga('localHitPrinter:message', 'Hello, world!');
   window.location=universe;
 }
 function submitEnabler(ind) {
@@ -94,5 +94,10 @@ function submitEnabler(ind) {
       </p>
     </form>
   </div>
+  <p>
+      <div>
+        <a href="page2.html">Or just go to another page</a>
+      </div>
+  </p>
 </body>
 </html>
