@@ -1,13 +1,15 @@
 <html>
 <head>
   <title>My lovely index</title>
+
+    <!-- GA main tracking snippet with some changes -->
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics_debug.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  //window.ga_debug = {trace: true};
+    //window.ga_debug = {trace: true};
   
   ga('create', 'UA-89745902-1', 'auto');
   //see replacement below
@@ -16,7 +18,10 @@
   //do not send data when opened locally
   if (location.protocol == 'file') {
   ga('set', 'sendHitTask', null);
-}
+  }
+
+  //load my plugin
+  ga('require', 'localHitSender', {path: '/log', debug: true})
   
   ga(function(){
     console.log(ga.getAll());
@@ -24,27 +29,52 @@
   });
   ga(function (tracker) {
     console.log('Traker ' + tracker.get('name') + ' for trackingId' + tracker.get('trackingId') + ' event type ' + tracker.get('eventAction') + ' screenResolution ' + tracker.get('screenResolution'))
-  })
-  ga('send', 'pageview', {
+  });
+
+  //OVERRIDE send command to do something else in addition
+  ga(function(tracker) {
+      // Grab a reference to the default sendHitTask function.
+      var originalSendHitTask = tracker.get('sendHitTask');
+      // Modifies sendHitTask to send a copy of the request to a local server after
+      // sending the normal request to www.google-analytics.com/collect.
+      tracker.set('sendHitTask', function(model) {
+          originalSendHitTask(model);
+          console.log('Sending data: ' + model.get('hitPayload'));
+/*          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/localhits', true);
+          xhr.send(model.get('hitPayload'));*/
+      });
+  });
+  ga('send', 'pageview');
+
+  //USUAL send command
+  /*ga('send', 'pageview', {
   'hitCallback': function() {
     console.log('hit sent');
   }
-});
-
+});*/
 </script>
+    <!-- GA plugin -->
+<script async src="ga-utils.js"></script>
+
 </head>
 <body>
 
 <script>
 function goUniverse(universe){
-  alert('Going to ' + universe)
+//  alert('Going to ' + universe);
+  ga('send', 'event', 'GoingToSearch', 'Searching on ' + universe, 'LeavingForSearch');
+  ga('localHitSender:message', 'Hello, world!');
+  window.location=universe;
 }
 function submitEnabler(ind) {
   if(ind > 0){
-    document.getElementById("submit").disabled=false
+    document.getElementById("submit").disabled=false;
+    ga('send', 'event', 'EngineSelection', 'EngineSelected - ' + document.getElementById('engines')[ind].value, 'SearchEngines');
   }
   else {
-    document.getElementById("submit").disabled=true
+    document.getElementById("submit").disabled=true;
+    ga('send', 'event', 'EngineSelection', 'EngineUnselected', 'SearchEngines');
   }
 }
 </script>
