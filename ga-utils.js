@@ -26,4 +26,7 @@ providePlugin('localHitPrinter', LocalHitPrinter);
 function onLoadEventHandler(pageName) {
     ga('send','event','PageLoading',pageName + ' loaded');
     ga('localHitPrinter:message', pageName + ' loaded');
+    var loadTime = new Date().getTime() - window.performance.timing.navigationStart;
+    console.log('Reporting to GA: loadTime is ' + loadTime);
+    ga('send', 'timing', 'Speedy', 'LoadTime - ' + pageName, loadTime);
 }
