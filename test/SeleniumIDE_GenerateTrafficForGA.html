@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://boriska70.github.io/" />
+<title>GenerateTrafficForGA</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GenerateTrafficForGA</td></tr>
+</thead><tbody>
+<tr>
+	<td>store</td>
+	<td>javascript{new Date().getTime()}</td>
+	<td>start</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>javascript{var Searchers=['Google', 'Yahoo', 'Yandex']; Searchers[Math.floor(Math.random()*Searchers.length)]}</td>
+	<td>SearcherName</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Selected search engine: ${SearcherName}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=engines</td>
+	<td>label=${SearcherName}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Or just go to another page</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=OK, let's now go back to index.html</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>javascript{new Date().getTime()}</td>
+	<td>stop</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>storedVars['stop']-storedVars['start']</td>
+	<td>duration</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Duration is ${duration} msec with ${SearcherName}</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

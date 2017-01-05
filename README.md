@@ -38,3 +38,8 @@ To test things on local Jetty: webapps\static.xml:
    </Set>
  </Configure>
 ```
+
+To create some traffic use the Selenium IDE test under test folder
+For more details about Selenium:
+- http://www.seleniumhq.org/docs/02_selenium_ide.jsp
+- https://procedurecheck.wordpress.com/2014/11/23/selenium-ide-cheatsheet/
