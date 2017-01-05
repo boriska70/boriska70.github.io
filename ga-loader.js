@@ -19,7 +19,7 @@ ga(function(tracker) {
     var originalSendHitTask = tracker.get('sendHitTask');
     tracker.set('sendHitTask', function(model) {
         originalSendHitTask(model);
-        var url = '/foo/server.html';
+        var url = '/server.html';
         var data = model.get('hitPayload');
         console.log('Sending data to server on ' + url + ': ' + model.get('hitPayload'));
         var xhr = new XMLHttpRequest();

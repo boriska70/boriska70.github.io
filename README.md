@@ -29,7 +29,7 @@ To test things on local Jetty: webapps\static.xml:
  <?xml version="1.0"  encoding="ISO-8859-1"?>
  <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.eclipse.org/configure.dtd">
  <Configure class="org.eclipse.jetty.server.handler.ContextHandler">
-   <Set name="contextPath">/foo</Set>
+   <Set name="contextPath">/</Set>
    <Set name="resourceBase">path-to-local-folder-where-index-sits</Set>
    <Set name="handler">
      <New class="org.eclipse.jetty.server.handler.ResourceHandler">
