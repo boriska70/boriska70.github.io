@@ -45,21 +45,21 @@
           xhr.send(model.get('hitPayload'));*/
       });
   });
-  ga('send', 'pageview');
 
   //USUAL send command
-  /*ga('send', 'pageview', {
+  //ga('send', 'pageview');
+
+  ga('send', 'pageview', {
   'hitCallback': function() {
     console.log('hit sent');
   }
-});*/
+})
 </script>
     <!-- GA plugin -->
 <script async src="ga-utils.js"></script>
 
 </head>
 <body onload="onLoadEventHandler('index.html')">
-
 <script>
 function goUniverse(universe){
 //  alert('Going to ' + universe);
