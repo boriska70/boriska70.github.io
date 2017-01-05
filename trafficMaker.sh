@@ -1,3 +1,7 @@
+#! /bin/bash
+
+# CURL does nothing with javascript so this script does not generate Google Analytics data
+
 while [ true ]; do
   echo $(date -Iseconds)
   fakeip=12.14.16.$(( RANDOM % 255 ))

@@ -18,4 +18,3 @@ ga('send', 'pageview');
 <!-- NOTE: PLUGIN SCRIPTS MUST BE INCLUDED AFTER THE TRACKING SNIPPET. -->
 <!-- HERE IS THE PLUGIN LOADED -->
 <script async src="/path/to/link-tracker-plugin.js"></script>
-
