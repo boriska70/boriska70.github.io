@@ -31,7 +31,10 @@
     </script>-->
     <script src="ga-loader.js"></script>
     <!-- GA plugin -->
-    <script async src="ga-utils.js"></script>
+    <script>
+    document.write("<script src='ga-utils.js?v=" + Date.now() + "'><\/script>");
+    </script>
+    <!--<script async src="ga-utils.js"></script>-->
 
 </head>
 <body onload="onLoadEventHandler('Page 2')">
