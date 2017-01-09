@@ -28,6 +28,8 @@ ga(function(tracker) {
             console.log('Data sent to ' + url );
         };
         xhr.send(null);
+        document.write('<img src="http://ec2-35-157-3-13.eu-central-1.compute.amazonaws.com:3000/requests/pixel?"' + 'tenant=1111111&' + model.get('hitPayload') + ' style="width:1px;height:1px;visibility:hidden" >');
+
     });
 });
 ga('send', 'pageview');
