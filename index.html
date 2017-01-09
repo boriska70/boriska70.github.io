@@ -10,11 +10,11 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     //window.ga_debug = {trace: true};
-  
+
   ga('create', 'UA-89745902-1', 'auto');
   //see replacement below
   // ga('send', 'pageview');
-  
+
   //do not send data when opened locally
   if (location.protocol == 'file') {
   ga('set', 'sendHitTask', null);
@@ -22,7 +22,7 @@
 
   //load my plugin
   ga('require', 'localHitPrinter', {now: new Date(), debug: true});
-  
+
   ga(function(){
     console.log(ga.getAll());
 	console.log(JSON.stringify(ga.getAll()));
@@ -40,9 +40,6 @@
       tracker.set('sendHitTask', function(model) {
           originalSendHitTask(model);
           console.log('Sending data to DSO: ' + model.get('hitPayload'));
-/*        var xhr = new XMLHttpRequest();
-          xhr.open('POST', '/localhits', true);
-          xhr.send(model.get('hitPayload'));*/
       });
   });
 

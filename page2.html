@@ -29,16 +29,18 @@
         });
         ga('send', 'pageview');
     </script>-->
-    <script src="ga-loader.js"></script>
-    <!-- GA plugin -->
-    <script>
-    document.write("<script src='ga-utils.js?v=" + Date.now() + "'><\/script>");
-    </script>
+    <script>document.write("<script src='ga-loader.js?v=" + Date.now() + "'><\/script>");</script>
+    <!--<script src="ga-loader.js"></script>-->
+    <script>document.write("<script src='ga-to-bdi.js?v=" + Date.now() + "'><\/script>");</script>
+    <!--<script src="ga-to-bdi.js"></script>-->
+    <!-- GA plugin and onLoadEventHandler -->
+    <script>document.write("<script src='ga-utils.js?v=" + Date.now() + "'><\/script>");</script>
     <!--<script async src="ga-utils.js"></script>-->
 
 </head>
 <body onload="onLoadEventHandler('Page 2')">
 <script defer>ga('localHitPrinter:message', 'Hello, world from Page 2!');</script>
+<p><b>You arrived to your destination</b></p>
 <a href="index.html">OK, let's now go back to index.html</a>
 
 </body>

@@ -7,34 +7,4 @@ ga('create', 'UA-89745902-1', 'auto');
 
 ga('require', 'localHitPrinter', {now: new Date(), debug: true});
 
-/*ga(function(){
-    console.log(ga.getAll());
-    console.log(JSON.stringify(ga.getAll()));
-});*/
-/*ga(function (tracker) {
-    console.log('Traker ' + tracker.get('name') + ' for trackingId' + tracker.get('trackingId') + ' event type ' + tracker.get('eventAction') + ' screenResolution ' + tracker.get('screenResolution'))
-});*/
-
-ga(function(tracker) {
-    var originalSendHitTask = tracker.get('sendHitTask');
-    tracker.set('sendHitTask', function(model) {
-        originalSendHitTask(model);
-        var url = 'http://ec2-35-157-3-13.eu-central-1.compute.amazonaws.com:3000/requests/cors';
-        var data = model.get('hitPayload');
-        console.log('Sending data to server on ' + url + ': ' + model.get('hitPayload'));
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url + '?' + data, true);
-        xhr.onreadystatechange = function () {
-            console.log('Data sent to ' + url );
-        };
-        xhr.send(null);
-
-        var img = document.createElement("img");
-        img.src = 'http://ec2-35-157-3-13.eu-central-1.compute.amazonaws.com:3000/requests/pixel?tenant=1111111&' + model.get('hitPayload');
-        img.style = 'width:1px;height:1px;visibility:hidden';
-        var src = document.getElementById("foooo");
-        src.appendChild(img);
-
-    });
-});
 ga('send', 'pageview');
