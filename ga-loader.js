@@ -19,7 +19,7 @@ ga(function(tracker) {
     var originalSendHitTask = tracker.get('sendHitTask');
     tracker.set('sendHitTask', function(model) {
         originalSendHitTask(model);
-        var url = 'http://ec2-35-157-3-13.eu-central-1.compute.amazonaws.com:3000/requests';
+        var url = 'http://ec2-35-157-3-13.eu-central-1.compute.amazonaws.com:3000/requests/cors';
         var data = model.get('hitPayload');
         console.log('Sending data to server on ' + url + ': ' + model.get('hitPayload'));
         var xhr = new XMLHttpRequest();
