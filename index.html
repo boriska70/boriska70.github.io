@@ -39,7 +39,7 @@
       // sending the normal request to www.google-analytics.com/collect.
       tracker.set('sendHitTask', function(model) {
           originalSendHitTask(model);
-          console.log('Sending data to DSO: ' + model.get('hitPayload'));
+          console.log('Printing data for DSO: ' + model.get('hitPayload'));
       });
   });
 
