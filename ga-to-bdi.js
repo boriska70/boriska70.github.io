@@ -14,11 +14,19 @@ var corssimplepost = true;
 var corspost = true;
 var corsbeacon = true;
 
+var trackingStarted = false;
+
 ga(function(tracker) {
     console.log('>>>> Overriding sendHitTask for tracker: ' + tracker.get('name'));
     var originalSendHitTask = tracker.get('sendHitTask');
     tracker.set('sendHitTask', function(model) {
-        if(model.get('hitType') != 'pageview'){
+        if(model.get('hitType') == 'pageview'){
+            if(tracker.get('trackingStarted') != undefined) {
+                originalSendHitTask(model);
+            } else {
+                tracker.set('trackingStarted', 'true');
+            }
+        } else {
             originalSendHitTask(model);
         }
 
