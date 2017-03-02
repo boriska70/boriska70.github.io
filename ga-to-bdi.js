@@ -9,9 +9,9 @@ var convertQueryToBody = function (query) {
 };
 
 var justget = false;
-var cors = true;
-var corssimplepost = true;
-var corspost = true;
+var cors = false;
+var corssimplepost = false;
+var corspost = false;
 var corsbeacon = true;
 
 var trackingStarted = false;
@@ -58,7 +58,7 @@ ga(function(tracker) {
 
         if(corssimplepost) {
             //CORS SIMPLE POST
-            var url = 'http://ec2-35-157-160-56.eu-central-1.compute.amazonaws.com:3000/corssimplepost';
+            var url = 'http://ec2-35-157-160-56.eu-central-1.compute.amazonaws.com:3000/requests/corssimplepost';
             var data = model.get('hitPayload');
             console.log('SIMPLY POSTING data to server on ' + url + ': ' + data);
             var xhr = new XMLHttpRequest();
@@ -72,7 +72,7 @@ ga(function(tracker) {
         
         if(corspost) {
             //CORS POST
-            var url = 'http://ec2-35-157-160-56.eu-central-1.compute.amazonaws.com:3000/corspost';
+            var url = 'http://ec2-35-157-160-56.eu-central-1.compute.amazonaws.com:3000/requests/corspost';
             var data = convertQueryToBody(model.get('hitPayload'));
             console.log('POSTING data to server on ' + url + ': ' + data);
             var xhr = new XMLHttpRequest();
@@ -87,7 +87,7 @@ ga(function(tracker) {
         if(corsbeacon) {
             //WEB BEACON
             var img = document.createElement("img");
-            img.src = 'http://ec2-35-157-160-56.eu-central-1.compute.amazonaws.com:3000/pixel?tenant=1111111&' + model.get('hitPayload');
+            img.src = 'http://ec2-35-157-160-56.eu-central-1.compute.amazonaws.com:3000/requests/pixel?tenant=1111111&' + model.get('hitPayload');
             img.style = 'width:1px;height:1px;visibility:hidden';
             var src = document.getElementById("foooo");
             console.log('BEACONING data to server on ' + img.src);
